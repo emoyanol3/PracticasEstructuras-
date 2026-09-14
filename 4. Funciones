@@ -1,0 +1,468 @@
+# Ejercicio 1 Calcular el precio total con IVA mediante una función
+
+# Entrada: precio (valor base ingresado por el usuario)
+# Proceso: Calcular el 15% de IVA sumándolo al precio base dentro de una función y devolver el valor
+# Salida: Presentar el precio total con IVA redondeado a 2 decimales
+
+# Bosquejo (Prueba para precio = 100)
+# calcular_iva(100): iva = 100 + (100 * 0.15) = 100 + 15 = 115.0
+# Retorna 115.0 -> asigna a variable total
+# Resultado: Imprime "Precio total con iva: 115.00"
+
+# Patrón
+# Modularización por Función Transformadora (Entrada -> Procesamiento/Retorno -> Impresión)
+
+def calcular_iva(precio):
+    iva = precio + (precio * 0.15)
+    return iva
+
+precio = float(input("Ingrese un precio: "))
+total = calcular_iva(precio)
+
+print(f"Precio total con iva: {total:.2f}")
+
+
+# Ejercicio 2 Verificar y listar números primos mediante una función booleana
+
+# Entrada: num (número entero a evaluar) y rango de 2 a 30
+# Proceso: Evaluar divisibilidad hasta √n devolviendo True/False; usar la función para validar un número y para filtrar una serie
+# Salida: Presentar si el número es primo y la lista de primos del 2 al 30
+
+# Bosquejo (Prueba de es_primo para k = 4 y k = 5)
+# es_primo(4): 4 % 2 == 0 -> Retorna False (4 no se imprime)
+# es_primo(5): 5 no tiene divisores hasta √5 (2) -> Retorna True (5 se imprime)
+# Resultado Uso 2: 2 3 5 7 11 13 17 19 23 29 
+
+# Patrón
+# Función Predicado (Booleana) reutilizable para Verificación Directa y Filtrado de Secuencias
+
+def es_primo(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False           # Retorna False y finaliza la función al hallar un divisor
+    return True                    # Retorna True si superó todas las pruebas de divisibilidad
+
+# --- Uso 1: verificar uno ---
+num = int(input("Número: "))
+if es_primo(num):
+    print(f"{num} es primo")
+else:
+    print(f"{num} NO es primo")
+
+# --- Uso 2: listar primos entre 2 y 30 ---
+print("Primos entre 2 y 30:")
+for k in range(2, 31):
+    if es_primo(k):
+        print(k, end=" ")
+
+
+# Ejercicio P3: Suma de los dígitos de un número mediante una función
+
+# Entrada: num (número entero ingresado) y lista de prueba [123, 4783, 999]
+# Proceso: Extraer el último dígito con % 10, acumularlo en suma y reducir n con // 10 hasta agotar el número
+# Salida: Presentar la suma total de los dígitos del número ingresado y de la lista de prueba
+
+# Bosquejo (Prueba de suma_digitos para x = 123)
+# n = 123, suma = 0
+# 1ra iteración: suma += 123 % 10 (3) -> suma = 3  | n = 123 // 10 = 12
+# 2da iteración: suma += 12 % 10  (2) -> suma = 5  | n = 12 // 10  = 1
+# 3ra iteración: suma += 1 % 10   (1) -> suma = 6  | n = 1 // 10   = 0
+# Retorna 6 -> Imprime "123 → 6"
+
+# Patrón
+# Acumulación por Descomposición Numérica en Base 10 (Extracción con módulo y reducción por división entera)
+
+def suma_digitos(n):
+    n = abs(n)                     # Normaliza el número a positivo si es negativo
+    suma = 0
+    while n > 0:
+        suma += n % 10             # Extrae y acumula el último dígito
+        n = n // 10                # Elimina el último dígito procesado
+    return suma
+
+# Uso
+num = int(input("Número: "))
+print(f"Suma: {suma_digitos(num)}")
+
+# También sirve para varios
+for x in [123, 4783, 999]:
+    print(f"{x} → {suma_digitos(x)}")
+
+
+# Ejercicio adicional Verificar si un número es narcisista (Número de Armstrong)
+
+# Entrada: n (número entero a evaluar)
+# Proceso: Obtener la cantidad de dígitos (k) y sumar cada dígito elevado a k; comparar el total con n
+# Salida: Retornar True si la suma de las potencias es igual al número original, False en caso contrario
+
+# Bosquejo (Prueba para n = 153)
+# num_str = "153", k = 3, suma = 0
+# d = 1 -> suma += 1**3 = 1
+# d = 5 -> suma += 5**3 = 125 -> suma = 126
+# d = 3 -> suma += 3**3 = 27  -> suma = 153
+# 153 == 153 -> Retorna True
+
+# Patrón
+# Acumulación por Mapeo de Potencias (Transformación a cadena para extracción de exponente y base)
+
+def es_narcisista(n):
+    n = abs(n)                     # Normaliza el valor a positivo
+    num_str = str(n)
+    num_digitos = len(num_str)
+    
+    suma = 0
+    for digito in num_str:
+        suma += int(digito) ** num_digitos
+        
+    return suma == n
+
+# --- Uso ---
+num = int(input("Número: "))
+if es_narcisista(num):
+    print(f"{num} es un número narcisista")
+else:
+    print(f"{num} NO es un número narcisista")
+
+# Pruebas con varios números
+print("\nPruebas automáticas:")
+for x in [153, 370, 371, 407, 9474, 123]:
+    print(f"{x} → {es_narcisista(x)}")
+
+
+
+
+
+
+# Ejercicio4: Menú interactivo modularizado con funciones
+
+# Entrada: opcion (opción del menú seleccionada) y nombre (cadena para personalizar saludo/despedida)
+# Proceso: Desplegar menú en bucle while True, ejecutar la función asociada mediante if/elif y salir con break en opción 3
+# Salida: Presentar el saludo o despedida personalizada, o mensaje de terminación del programa
+
+# Bosquejo (Prueba seleccionando opcion = "1" y nombre = "Ana", luego opcion = "3")
+# Iteración 1: mostrar_menu() -> opcion = "1" -> ejecuta saludar() -> nombre = "Ana" -> "¡Hola, Ana!"
+# Iteración 2: mostrar_menu() -> opcion = "3" -> imprime "Adiós" -> break (finaliza el bucle)
+
+# Patrón
+# Control de Flujo por Menú de Opciones (Bucle principal centinela con despacho de funciones)
+
+def saludar():
+    nombre = input("Nombre: ")
+    print(f"¡Hola, {nombre}!")
+
+def despedir():
+    nombre = input("Nombre: ")
+    print(f"¡Adiós, {nombre}!")
+
+def mostrar_menu():
+    print("\n--- MENÚ ---")
+    print("1. Saludar")
+    print("2. Despedir")
+    print("3. Salir")
+
+# Programa principal
+while True:
+    mostrar_menu()
+    opcion = input("Opción: ")
+    
+    if opcion == "1":
+        saludar()
+    elif opcion == "2":
+        despedir()
+    elif opcion == "3":
+        print("Adiós")
+        break                       # Termina la ejecución del programa
+    else:
+        print("Opción inválida")
+# Ejercicio adicional Menú interactivo modularizado con funciones
+
+# Entrada: opcion (opción del menú seleccionada) y nombre (cadena para personalizar saludo/despedida)
+# Proceso: Desplegar menú en bucle while True, ejecutar la función asociada mediante if/elif y salir con break en opción 3
+# Salida: Presentar el saludo o despedida personalizada, o mensaje de terminación del programa
+
+# Bosquejo (Prueba seleccionando opcion = "1" y nombre = "Ana", luego opcion = "3")
+# Iteración 1: mostrar_menu() -> opcion = "1" -> ejecuta saludar() -> nombre = "Ana" -> "¡Hola, Ana!"
+# Iteración 2: mostrar_menu() -> opcion = "3" -> imprime "Adiós" -> break (finaliza el bucle)
+
+# Patrón
+# Control de Flujo por Menú de Opciones (Bucle principal centinela con despacho de funciones)
+
+def saludar():
+    nombre = input("Nombre: ")
+    print(f"¡Hola, {nombre}!")
+
+def despedir():
+    nombre = input("Nombre: ")
+    print(f"¡Adiós, {nombre}!")
+
+def mostrar_menu():
+    print("\n--- MENÚ ---")
+    print("1. Saludar")
+    print("2. Despedir")
+    print("3. Salir")
+
+# Programa principal
+while True:
+    mostrar_menu()
+    opcion = input("Opción: ")
+    
+    if opcion == "1":
+        saludar()
+    elif opcion == "2":
+        despedir()
+    elif opcion == "3":
+        print("Adiós")
+        break                       # Termina la ejecución del programa
+    else:
+        print("Opción inválida")
+
+
+
+
+#EJERCICIOS PROPUESTOS
+
+# Ejercicio P1: Función area_rectangulo
+
+# Entrada: base, altura (números flotantes ingresados por el usuario)
+# Proceso: Multiplicar base por altura dentro de la función y devolver el mensaje formateado
+# Salida: Mostrar el área del rectángulo calculada con 2 decimales de precisión
+
+# Bosquejo (Prueba para base = 5.0 y altura = 3.0)
+# area_rectangulo(5.0, 3.0): area = 5.0 * 3.0 = 15.0
+# Retorna "la area del rectángulo es: 15.00"
+# Resultado: Imprime el texto retornado por la función
+
+# Patrón
+# Modularización por Función Retornadora de Cadena (Cálculo directo y formateo de texto)
+
+def area_rectangulo(base, altura):
+    area = base * altura
+    return f"la area del rectángulo es: {area:.2f}"
+
+base = float(input("Ingrese la base: "))
+altura = float(input("Ingrese la altura: "))
+
+print(area_rectangulo(base, altura))
+
+
+
+
+# Ejercicio P2: Función máximo de 3
+
+# Entrada: num1, num2, num3 (números flotantes a comparar)
+# Proceso: Evaluar condiciones lógicas (and) para determinar el valor numérico más alto entre los tres
+# Salida: Mostrar el mensaje indicando cuál es el número mayor
+
+# Bosquejo (Prueba para num1 = 12, num2 = 45, num3 = 7)
+# 1ra condición: (12 > 45 and 12 > 7) -> Falso
+# 2da condición: (45 > 12 and 45 > 7) -> Verdadero -> Retorna "45.0 es el mayor"
+# Resultado: Imprime el texto retornado con el número 45.0
+
+# Patrón
+# Condicional Anidado / Despacho de Evaluación Múltiple (Comparación lógica por pares)
+
+def mayor_de3(num1, num2, num3):
+    if num1 > num2 and num1 > num3:
+        return f"{num1} es el mayor"
+    elif num2 > num1 and num2 > num3:
+        return f"{num2} es el mayor"
+    else:
+        return f"{num3} es el mayor"
+
+num1 = float(input("Ingrese un número: "))
+num2 = float(input("Ingrese otro número: ")) 
+num3 = float(input("Ingrese otro número más: "))
+
+print(mayor_de3(num1, num2, num3))
+
+
+# Ejercicio P3: Verificar si un año es bisiesto (Versión extendida y compacta)
+
+# Entrada: anio (número entero a evaluar) y lista de prueba [2024, 2023, 2000, 1900]
+# Proceso: Evaluar divisibilidad por 400, 100 y 4 (divisibles por 4 pero no por 100, excepto los múltiplos de 400)
+# Salida: Presentar el año junto con un valor booleano (True/False) indicando si es bisiesto
+
+# Bosquejo (Prueba para y = 2000 y y = 1900 en es_bisiesto_corta)
+# y = 2000: 2000 % 400 == 0 es Verdadero -> Retorna True inmediatamente
+# y = 1900: 1900 % 400 == 0 (Falso) or (1900 % 4 == 0 (Verdadero) and 1900 % 100 != 0 (Falso)) -> Retorna False
+# Resultado: 2000: True, 1900: False
+
+# Patrón
+# Salidas Tempranas (Early Exit) / Evaluación Booleana Compuesta para Reglas de Excepción
+
+def es_bisiesto(anio):
+    if anio % 400 == 0:
+        return True                # Los múltiplos de 400 siempre son bisiestos
+    if anio % 100 == 0:
+        return False               # El resto de múltiplos de 100 NO son bisiestos
+    if anio % 4 == 0:
+        return True                # Múltiplos de 4 (no múltiplos de 100) son bisiestos
+    return False                   # Cualquier otro año NO es bisiesto
+
+# O en una línea:
+def es_bisiesto_corta(anio):
+    return anio % 400 == 0 or (anio % 4 == 0 and anio % 100 != 0)
+
+# Pruebas
+for y in [2024, 2023, 2000, 1900]:
+    print(f"{y}: {es_bisiesto_corta(y)}")
+
+
+
+
+
+# Ejercicio P4:  Cálculo de Factorial y Combinatoria (Combinaciones sin repetición)
+
+# Entrada: n (total de elementos) y k (elementos a seleccionar)
+# Proceso: Multiplicar enteros de 2 a n para el factorial; aplicar la fórmula n! / (k! * (n-k)!) mediante división entera
+# Salida: Presentar el factorial de n y el número total de combinaciones posibles
+
+# Bosquejo (Prueba para combinatoria(5, 2))
+# factorial(5) = 1 * 2 * 3 * 4 * 5 = 120
+# factorial(2) = 1 * 2 = 2
+# factorial(5 - 2) = factorial(3) = 1 * 2 * 3 = 6
+# combinatoria(5, 2) = 120 // (2 * 6) = 120 // 12 = 10
+# Resultado esperado: 120 para factorial(5) y 10 para combinatoria(5, 2)
+
+# Patrón
+# Modularización Matemática Compuesta (Composición de Funciones / Producto Acumulado)
+
+def factorial(n):
+    fact = 1
+    for i in range(2, n + 1):
+        fact *= i                   # Acumula la multiplicación iterativa de 2 hasta n
+    return fact
+
+def combinatoria(n, k):
+    # Utiliza la función factorial() para resolver la fórmula combinatoria: n! / (k! * (n - k)!)
+    return factorial(n) // (factorial(k) * factorial(n - k))
+
+# Uso
+print(factorial(5))             # Muestra el resultado de 5! (1 * 2 * 3 * 4 * 5 = 120)
+print(combinatoria(5, 2))       # Calcula las combinaciones de 5 elementos tomados de 2 en 2 (Resultado: 10)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Ejercicio P5: Calculadora modular
+
+# Entrada: opcion (menú de selección) y n1, n2 (operandos ingresados condicionalmente)
+# Proceso: Despachar la operación matemática según la opción elegida mediante funciones independientes
+# Salida: Presentar el resultado de la operación formateado o el mensaje de cierre de programa
+
+# Bosquejo (Prueba para opción 1 con n1=4 y n2=2, luego opción 5)
+# Iteración 1: opcion = 1 -> pide n1=4, n2=2 -> suma(4, 2) -> "4.0 + 2.0: 6.0"
+# Iteración 2: opcion = 5 -> imprime "Vuelve pronto!" -> break (sale sin pedir números)
+
+# Patrón
+# Despacho Aislado por Menú (Lectura condicional de parámetros según el flujo de la opción)
+
+def suma(n1, n2):
+    return f"{n1} + {n2}: {n1 + n2}"
+
+def resta(n1, n2):
+    return f"{n1} - {n2}: {n1 - n2}"
+
+def multiplicacion(n1, n2):
+    return f"{n1} x {n2}: {n1 * n2}"
+
+def division(n1, n2):
+    if n2 == 0:
+        return "Error: No se puede dividir entre cero"
+    return f"{n1} / {n2}: {n1 / n2}"
+
+def mostrar_calculadora():
+    print("\n--- Operaciones ---")
+    print("1. Sumar")
+    print("2. Restar")
+    print("3. Multiplicar")
+    print("4. Dividir")
+    print("5. Salir")
+
+while True:
+    mostrar_calculadora()
+    opcion = int(input("Ingrese una opción: "))
+    
+    if opcion == 5:
+        print("¡Vuelve pronto!")
+        break                       # Sale directamente sin pedir números
+    elif 1 <= opcion <= 4:
+        n1 = float(input("Ingrese el primer número: "))
+        n2 = float(input("Ingrese el segundo número: "))
+        
+        if opcion == 1:
+            print(suma(n1, n2))
+        elif opcion == 2:
+            print(resta(n1, n2))
+        elif opcion == 3:
+            print(multiplicacion(n1, n2))
+        elif opcion == 4:
+            print(division(n1, n2))
+    else:
+        print("Opción inválida")
+
+
+
+#Parámetros y argumentos
+#Los términos se confunden pero son distintos:
+#Parámetro:
+#el nombre que aparece en la definición (
+#def suma(a, b))
+#Argumento:
+#el valor real que pasas al llamar (
+#suma(3, 5))
+
+
+# Varios parámetros
+def suma(a, b):
+    return a + b
+
+# Parámetros con valor por defecto
+def saludar(nombre, saludo="Hola"):
+    print(f"{saludo}, {nombre}")
+
+# Llamadas
+print(suma(3, 5))            # 8
+saludar("Ana")               # Hola, Ana (usa el default)
+saludar("Ana", "Buenos días") # Buenos días, Ana
+saludar(saludo="Hi", nombre="Ana")  # llamada con nombres
+
+# Función sin parámetros ni retorno
+def separador():
+    print("=" * 40)
+
+separador()                  # imprime 40 signos =
+
+
+#Ámbito: variables locales vs globales
+
+# Variable global — vive en todo el archivo
+IVA = 0.15
+
+def calcular_total(precio):
+    # 'iva' y 'total' son LOCALES: solo existen dentro de la función
+    iva = precio * IVA
+    total = precio + iva
+    return total
+
+resultado = calcular_total(100)   # 115.0
+print(resultado)
+
+# print(iva)  # ERROR: iva no existe aquí
+print(IVA)     # OK: IVA es global
