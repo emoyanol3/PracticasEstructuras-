@@ -1,0 +1,212 @@
+#Ejercicio1 Saludo personalizado
+
+#Entrada: nombre, Proceso: concatenar el nombre con el saludo, Salida: el saludo completo
+#Bosquejo
+
+#nombre = "Ana"
+#Salida:  Hola, Ana. Bienvenida al curso.
+#No se calcula nada, simplemente se lee y se presenta mediante concatenación
+
+nombre = input("¿Cómo te llamas? ")
+print(f"Hola, {nombre}. Bienvenida al curso.")
+
+
+
+
+#Ejercicio adicional, Amplíalo para que además pida la edad y muestre «tienes X años». 
+
+#Entrada: nombre, edad, Proceso: concatenar nombre y edad, Salida: presentar el saludo completo
+
+#Bosquejo
+
+#nombre="Edu"
+#edad=19
+#"Hola Edu, tienes 19 años"
+#Al igual que el ejercicio principal, aquí no se debe calcular nada; simplemente se lee y se presenta
+
+
+nombre=input("Cómo te llamas?: ")
+edad=int(input("Cuántos años tienes?: "))
+print(f"Hola, {nombre}, tienes {edad}, años")
+
+
+#Ejercicio 2 Promedio de 3 notas
+
+#Entrada: n1,n2,n3, Proceso: sumar las 3 notas y dividirlas para 3, #Salida: promedio
+
+#Bosquejo
+
+#n1 = 8, n2 = 6, n3 = 10
+
+#paso 1: sumo    8 + 6 + 10 = 24
+#paso 2: divido  24 / 3     = 8.0
+#paso 3: muestro "Promedio: 8.0"
+
+#Se leen las 3 notas se suman y lo que resulta se divide para 3, luego se presenta
+n1 = float(input("Nota 1: "))
+n2 = float(input("Nota 2: "))
+n3 = float(input("Nota 3: "))
+
+promedio = (n1 + n2 + n3) / 3      # PROCESO en una línea
+
+print(f"Promedio: {promedio:.1f}")  # :.1f muestra un decimal
+
+
+
+#Ejercicio adicional Modifícalo para que muestre «Aprueba» si el promedio es ≥ 7 y «Reprueba» si no. (Necesitas el if del módulo 3). 
+
+#Entrada: n1,n2,n3, Proceso: sumar las 3 notas y dividirlas para 3, #Salida: promedio
+
+#Bosquejo
+
+#n1 = 8, n2 = 6, n3 = 10
+
+#paso 1: sumo    8 + 6 + 10 = 24
+#paso 2: divido  24 / 3     = 8.0
+#paso 3: muestro "Promedio: 8.0"
+#paso 4 si promedio es mayor igual a 7 presenta aprobado
+#caso contrario presenta reprobado
+#Se leen y se suman las notas, el resultado se divide para 3, luego se pregunta por if si el promedio es mayor a 7 y se presenta un resultado
+
+n1 = float(input("Nota 1: "))
+n2 = float(input("Nota 2: "))
+n3 = float(input("Nota 3: "))
+
+promedio = (n1 + n2 + n3) / 3      # PROCESO en una línea
+
+print(f"Promedio: {promedio:.1f}")  # :.1f muestra un decimal
+
+if(promedio>=7):
+  print("Has aprobado")
+else:
+  print ("Has reprobado")
+
+
+
+
+#Ejercicio 3 area y perimetro de un rectangulo
+#Leer la base y la altura de un rectángulo y mostrar su área y su perímetro. Recuerda: área = base × altura, perímetro = 2 × (base + altura). 
+#Entrada: base, altura , Proceso: aplicar las dos fórmulas , Salida: area y perimetro
+
+#Bosquejo
+#base = 5, altura = 3
+#área      = 5 × 3 = 15
+#perímetro = 2 × (5 + 3) = 16
+#Se leen los datos y se calculan independientemente las variables para luego presentarlas
+
+base = float(input("Base: "))
+altura = float(input("Altura: "))
+
+area = base * altura                # PROCESO 1
+perimetro = 2 * (base + altura)     # PROCESO 2
+
+print(f"Área: {area:.2f}")
+print(f"Perímetro: {perimetro:.2f}")
+
+
+
+#Ejercicio adicional  área y perímetro de un círculo
+#Leer el radio de un círculo y mostrar su área y su perímetro. Recuerda: área = π × r², perímetro = 2 × π × r. 
+#Entrada: radio , Proceso: aplicar las dos fórmulas usando math.pi , Salida: area y perimetro
+
+#Bosquejo
+#radio = 5
+#área     = π × 5² = 78.54
+#perímetro = 2 × π × 5 = 31.42
+#Se lee el dato y se calculan independientemente las variables para luego presentarlas
+
+import math
+radio = float(input("Radio: "))
+area = math.pi * (radio ** 2)       # PROCESO 1
+perimetro = 2 * math.pi * radio     # PROCESO 2
+
+print(f"Área: {area:.2f}")
+print(f"Perímetro: {perimetro:.2f}")
+
+
+
+EJERCICIOS PROPUESTOS
+
+#Ejercicio P1 Pide una temperatura en grados Celsius y muéstrala en Fahrenheit. Fórmula: F = C × 9/5 + 32. 
+#Entrada: celsius , Proceso: aplicar la fórmula de conversión , Salida: fahrenheit
+
+#Bosquejo
+#celsius = 10
+#fahrenheit = (10 × 9/5) + 32 = 50.00
+#Se lee el dato y se calcula la variable para luego presentarla
+
+celsius=float(input("Ingrese grados celsius: "))
+
+fahrenheit=(celsius*(9/5))+32
+print(f"Grados Celsius, {celsius}, convertidos a grados fahrenheit:, {fahrenheit}")
+
+
+#Ejercicio P2
+
+#Ejercicio P2 Convertir segundos totales a horas, minutos y segundos (formato HH:MM:SS)
+#Pide una cantidad de segundos totales y muestra su equivalente desglosado en horas, minutos y segundos.
+#Entrada: total (segundos) , Proceso: calcular horas (total // 3600), obtener resto (% 3600), calcular minutos (resto // 60) y obtener segundos restantes (resto % 60) , Salida: horas, minutos y segundos en formato HH:MM:SS
+
+#Bosquejo
+#total = 3661
+#horas    = 3661 // 3600 = 1 # PROCESO 1: Obtiene las horas enteras (1 hora = 3600 seg)
+#resto    = 3661 % 3600  = 61 # PROCESO 2: Sobrante de segundos tras quitar las horas
+#minutos  = 61 // 60     = 1  # PROCESO 3: Obtiene los minutos enteros del sobrante (1 min = 60 seg)
+#segundos = 61 % 60      = 1 # PROCESO 4: Sobrante final que corresponden a los segundos
+#Resultado imprimible    = 1:01:01
+
+
+total = int(input("Segundos totales: "))
+horas = total // 3600               
+resto = total % 3600                
+minutos = resto // 60              
+segundos = resto % 60               
+
+print(f"{horas}:{minutos:02d}:{segundos:02d}") # SALIDA: :02d fuerza a mostrar 2 dígitos con cero a la izquierda
+
+
+
+#Ejercicio P3 Intercambiar dos variables
+
+#Entrada: a,b, Proceso; intercambiar variables, Salida: Presentar las variables
+
+#Bosquejo
+#a=1
+#b=2
+#a=b
+#b=a
+
+#No hay un patrón aquí, pues simplemente hay que leer las variables y cambiarles su valor
+
+a=int(input("Ingrese un número: "))
+b=int(input("Ingrese un número: "))
+
+a,b=b,a
+print(f"a={a}")
+print(f"b={b}")
+
+
+#Ejercicio P4 Calcular el IVA 15%
+
+#Entrada: precio, Proceso: precio*IVA, Salida: Total}
+
+#Bosquejo
+#precio=10
+#IVA=0.15
+#subtotal=10*0.15 = 1,5
+#total=10+1.5= 11.5
+
+#No hay patrones, solo debemos leer el precio y calcular con la constante IVA y para dicho resultado subtotal sumarlo con el precio inicial y así obtener el total
+
+
+precio=float(input("Ingrese el precio del producto: "))
+IVA=0.15
+subtotal=precio*IVA
+total=precio+subtotal
+
+print(f"El precio total del producto es de {total}")
+
+
+
+
+
