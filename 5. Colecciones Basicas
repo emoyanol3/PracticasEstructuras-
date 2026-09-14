@@ -1,0 +1,293 @@
+# Ejercicio P1 Contar vocales en una frase
+
+# Entrada: frase (cadena de texto convertida a minúsculas)
+# Proceso: Recorrer carácter por carácter y verificar pertenencia en el conjunto de vocales usando 'in'
+# Salida: Presentar la cantidad total de vocales encontradas
+
+# Bosquejo (Prueba para frase = "hola")
+# 'h' in vocales -> Falso
+# 'o' in vocales -> Verdadero -> total = 1
+# 'l' in vocales -> Falso
+# 'a' in vocales -> Verdadero -> total = 2
+# Resultado: "2 vocales"
+
+# Patrón
+# Conteo por Búsqueda en Conjunto / Búsqueda O(1) con Set
+
+frase = input("Frase: ").lower()     # Convierte todo a minúsculas para simplificar la comparación
+vocales = {"a", "e", "i", "o", "u"}  # Uso de set para búsquedas eficientes
+total = 0
+
+for ch in frase:
+    if ch in vocales:                # Verifica si el carácter actual es una vocal
+        total += 1                   # Acumula el contador de vocales
+
+print(f"{total} vocales")
+
+
+
+
+
+# Ejercicio P2Estadísticas básicas sobre una lista de notas
+
+# Entrada: notas (lista de números flotantes y enteros)
+# Proceso: Calcular el promedio dividiendo la suma total por la cantidad de elementos, y extraer extremos con max y min
+# Salida: Presentar el promedio, la nota máxima y la nota mínima redondeadas a 2 decimales
+
+# Bosquejo (Prueba para notas = [7, 8.5, 6, 9, 10, 5.5])
+# sum(notas) = 46.0 | len(notas) = 6
+# promedio = 46.0 / 6 = 7.666... -> 7.67
+# max(notas) = 10 -> 10.00
+# min(notas) = 5.5 -> 5.50
+# Resultado esperado: Promedio: 7.67, Máximo: 10.00, Mínimo: 5.50
+
+# Patrón
+# Reducción Estadística sobre Colecciones (Uso de built-ins sum, len, max, min)
+
+notas = [7, 8.5, 6, 9, 10, 5.5]
+
+promedio = sum(notas) / len(notas)
+
+print(f"Promedio: {promedio:.2f}")
+print(f"Máximo:   {max(notas):.2f}")
+print(f"Mínimo:   {min(notas):.2f}")
+
+
+# Ejercicio P3  Eliminar duplicados manteniendo el orden original
+#Dada la lista ["a", "b", "a", "c", "b", "d"], retorna una nueva lista sin duplicados respetando el orden de la primera aparición. (Con set se pierde el orden — hay que combinar set + list.) 
+
+# Entrada: datos (lista de elementos con valores repetidos)
+# Proceso: Iterar sobre la lista usando un set auxiliar para verificar duplicados en O(1) y conservar el orden
+# Salida: Presentar la lista resultado con elementos únicos en su orden de aparición inicial
+
+# Bosquejo (Prueba para datos = ["a", "b", "a", "c", "b", "d"])
+# x = "a" -> not in vistos -> vistos={'a'}, resultado=['a']
+# x = "b" -> not in vistos -> vistos={'a','b'}, resultado=['a','b']
+# x = "a" -> in vistos     -> Omitido
+# x = "c" -> not in vistos -> vistos={'a','b','c'}, resultado=['a','b','c']
+# x = "b" -> in vistos     -> Omitido
+# x = "d" -> not in vistos -> vistos={'a','b','c','d'}, resultado=['a','b','c','d']
+# Resultado final: ['a', 'b', 'c', 'd']
+
+# Patrón
+# Filtrado de Duplicados con Preservación de Orden / Búsqueda O(1) con Set Auxiliar
+
+datos = ["a", "b", "a", "c", "b", "d"]
+vistos = set()                       # Conjunto auxiliar para consulta rápida O(1)
+resultado = []                       # Lista acumuladora para preservar el orden
+
+for x in datos:
+    if x not in vistos:
+        vistos.add(x)
+        resultado.append(x)
+
+print(resultado)  # Output: ['a', 'b', 'c', 'd']
+
+
+
+
+# Ejercicio P4 Frecuencia de palabras y búsqueda de la palabra más repetida
+
+#Dado un texto, retorna un diccionario con la frecuencia de cada palabra (ignora mayúsculas). Al final, imprime la palabra que más se repite. 
+
+# Entrada: texto (cadena de caracteres original)
+# Proceso: Normalizar a minúsculas, separar por espacios, acumular frecuencias con dict.get() y extraer el valor máximo
+# Salida: Mostrar el diccionario de frecuencias y la palabra con mayor número de ocurrencias
+
+# Bosquejo (Prueba para texto = "El perro y el gato y el perro")
+# Palabras normalizadas: ["el", "perro", "y", "el", "gato", "y", "el", "perro"]
+# Conteo: {'el': 3, 'perro': 2, 'y': 2, 'gato': 1}
+# max(conteo, key=conteo.get): Evalúa la clave con el valor más alto -> 'el' (3)
+# Resultado esperado: Más repetida: 'el' (3 veces)
+
+# Patrón
+# Histograma / Mapeo de Frecuencias (Conteo con acumulador dict.get y extracción de clave máxima por criterio)
+
+texto = "El perro y el gato y el perro"
+conteo = {}
+for palabra in texto.lower().split():
+    conteo[palabra] = conteo.get(palabra, 0) + 1
+
+print(conteo)
+
+mas = max(conteo, key=conteo.get)
+menos= min(conteo,key=conteo.get)
+print(f"Más repetida: '{mas}' ({conteo[mas]} veces)")
+print(f"Menos repetida: '{menos}' ({conteo[menos]} veces)")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#cadenas 
+# Creación
+saludo = "Hola mundo"
+mensaje = 'con comillas simples también'
+multi = """tres comillas
+para varias líneas"""
+
+# Acceso e índice negativo
+print(saludo[0])   # 'H'
+print(saludo[-1])  # 'o' (último)
+
+# Slicing (rebanadas)
+print(saludo[0:4])  # 'Hola'
+print(saludo[5:])   # 'mundo'
+
+# Longitud y recorrido
+print(len(saludo))  # 10
+for ch in saludo:
+    print(ch)
+
+# Inmutabilidad
+# saludo[0] = "h"  ← ERROR: TypeError
+saludo = "h" + saludo[1:]  # ← se crea una NUEVA cadena
+
+#listas
+# Creación
+vacia = []
+notas = [7, 8.5, 9, 6.5]
+mezcla = [1, "dos", True, [3, 4]]  # admite cualquier tipo
+
+# Acceso, longitud, verificación
+print(notas[0])       # 7
+print(notas[-1])      # 6.5 (último)
+print(len(notas))     # 4
+print(9 in notas)     # True
+
+# Modificación
+notas[0] = 10          # cambiar por índice
+notas.append(8)         # añadir al final → O(1)
+notas.insert(0, 5)      # insertar al inicio → O(n)
+notas.remove(6.5)        # quita la primera ocurrencia de 6.5
+ultima = notas.pop()      # saca y retorna el último
+
+# Recorrido
+for n in notas:
+    print(n)
+
+for i, n in enumerate(notas):
+    print(f"posición {i} → {n}")
+
+# Ordenamiento
+notas.sort()              # in-place, ascendente
+notas.sort(reverse=True)  # in-place, descendente
+nueva = sorted(notas)   # retorna copia ordenada
+
+# Slicing y copia
+primeras = notas[:2]     # primeros 2
+copia = notas[:]          # copia completa (no alias)
+
+# Comprensión de listas
+cuadrados = [n*n for n in range(6)]  # [0,1,4,9,16,25]
+pares = [n for n in notas if n % 2 == 0]
+
+#tupla
+# Creación (los paréntesis son opcionales)
+punto = (3, 4)
+color = 255, 128, 0       # también es tupla
+uno = (5,)                # cuidado: (5) es int, (5,) es tupla
+
+# Acceso — igual que list
+print(punto[0], punto[1])   # 3 4
+
+# Inmutabilidad
+# punto[0] = 10  ← ERROR: TypeError
+
+# Desempaquetado — súper pythónico
+x, y = punto
+r, g, b = color
+
+# Retornar varios valores es una tupla implícita
+def min_max(lst):
+    return min(lst), max(lst)
+
+lo, hi = min_max([3, 1, 4, 1, 5])
+
+# Métodos limitados: count() e index()
+c = (1, 2, 3, 2, 1)
+print(c.count(2))       # 2
+print(c.index(3))       # 2
+
+
+
+
+
+
+
+#conjuntos set
+# Creación
+vacio = set()          # ← {} es dict, no set!
+letras = {"a", "b", "c"}
+unicos = set([1, 2, 2, 3, 3, 3])  # {1, 2, 3}
+
+# Operaciones básicas
+letras.add("d")         # añade uno
+letras.discard("z")     # quita si existe (no falla si no)
+letras.remove("a")      # quita, KeyError si no existe
+print("b" in letras)  # True — búsqueda O(1)
+print(len(letras))     # cuántos elementos
+
+# Recorrido (sin orden garantizado)
+for x in letras:
+    print(x)
+
+# Operaciones de conjunto (como en matemáticas)
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+print(a | b)  # unión         → {1,2,3,4,5,6}
+print(a & b)  # intersección  → {3,4}
+print(a - b)  # diferencia    → {1,2}
+print(a ^ b)  # diferencia sim → {1,2,5,6}
+
+# Caso típico: eliminar duplicados de una lista
+palabras = ["sí", "no", "sí", "tal vez", "no"]
+sin_repetir = list(set(palabras))  # orden no garantizado
+
+
+#dict 
+# Creación
+vacio = {}
+persona = {"nombre": "Ana", "edad": 30, "ciudad": "Guayaquil"}
+alt = dict(nombre="Ana", edad=30)   # forma alterna
+
+# Lectura
+print(persona["nombre"])     # "Ana" — KeyError si no existe
+print(persona.get("tel"))    # None — nunca falla
+print(persona.get("tel", "—"))  # "—" — valor por defecto
+
+# Modificación
+persona["edad"] = 31           # cambia el valor
+persona["email"] = "a@x.com"    # añade nueva clave
+del persona["ciudad"]         # elimina
+persona.pop("edad", None)      # elimina si existe, retorna valor
+
+# Verificación de clave
+if "nombre" in persona:
+    print("tiene nombre")
+
+# Recorrido
+for clave in persona:                # solo claves
+    print(clave, persona[clave])
+for clave, valor in persona.items():  # claves y valores juntos
+    print(f"{clave} = {valor}")
+for valor in persona.values():         # solo valores
+    print(valor)
+
+# Caso típico: contar frecuencias
+texto = "la casa de la abuela"
+conteo = {}
+for palabra in texto.split():
+    conteo[palabra] = conteo.get(palabra, 0) + 1
+print(conteo)  # {'la': 2, 'casa': 1, 'de': 1, 'abuela': 1}
