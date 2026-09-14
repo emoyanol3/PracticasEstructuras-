@@ -1,0 +1,599 @@
+#Ejercicio 1 contar del 1 a N
+#entrda n, Proceso:  recorrer desde 1 hasta n mediante un ciclo for, #Salida: cada número impreso en una linea
+
+#Bosquejo
+#n=5
+#for i in range(1,6)
+#print (i)
+
+#Nos damos cuenta que si usamos el range (1,5), nos va a contar desde 0 y nos dará un número menos al que se pide, entonces debemos por el range como (1,5+1), donde 5 es "n", por lo tanto (1,n+1)
+
+n=int(input("Cuántos números quieres generar:? "))
+
+for i in range (1,n+1):
+  print(i)
+
+
+
+#Ejercicio adicional , contar N a 1, (hacia atrás)
+#entrda n, Proceso:  recorrer desde n hasta 1 mediante un ciclo for, #Salida: cada número impreso en una linea
+
+#Bosquejo
+#n=5
+#for i in range(5,0,-1)
+#print (i)
+
+#Debemos usar un range (n,0,-1), en donde cero indica el tope del sistema, 0 nunca se a presentar y -1 indica la cantidad de números que se salta
+
+n=int(input("Cuántos números quieres generar:? "))
+
+for i in range (n,0,-1):
+  print(i)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Ejercicio2 Leer N y calcular la suma de 1 + 2 + 3 + ... + N.
+
+#entrada: n, proceso: recorrer mediante un ciclo for el n y acumular la suma en una variable, Proceso: presentar la suma
+
+#Bosquejo
+#n=5
+#i=1:  suma = 0 + 1 = 1
+#i=2:  suma = 1 + 2 = 3
+#i=3:  suma = 3 + 3 = 6
+#i=4:  suma = 6 + 4 = 10
+#i=5:  suma = 10 + 5 = 15   ← resultado
+
+
+n=int(input("Ingrese un número: "))
+
+suma=0
+
+for i in range(0,n+1):
+  suma+=i
+print(f" La suma es: {suma}")
+
+
+
+# Ejercicio adicional Suma de pares del 2 al 100
+
+# Entrada: Ninguna (rango fijo de 2 a 100)
+# Proceso: Recorrer de 2 en 2 con for y acumular los valores en suma
+# Salida: Presentar la suma total
+
+# Bosquejo
+# i=2: suma = 0 + 2 = 2
+# i=4: suma = 2 + 4 = 6
+# i=6: suma = 6 + 6 = 12
+# ...
+# i=100: suma = 2450 + 100 = 2550 ← resultado
+
+suma = 0
+
+for i in range(2, 101, 2):
+    suma += i
+
+print(f" La suma es: {suma}")
+
+
+
+
+
+
+#Ejercicio3 Leer N y calcular el factorial.
+
+#entrada: n, proceso: recorrer mediante un ciclo for el n y acumular su multiplicacion en una variable, Proceso: presentar el factorial
+
+#Bosquejo
+#n = 5, fact = 1 (INICIALIZACIÓN)
+#i=1:  fact = 1 * 1 = 1
+#i=2:  fact = 1 * 2 = 2
+#i=3:  fact = 2 * 3 = 6
+#i=4:  fact = 6 * 4 = 24
+#i=5:  fact = 24 * 5 = 120   ← resultado
+
+#debemos inicializar la variable factorial que sirve como acumulador multiplicativo pero la iniciamos en 1, lo demás es igual que el ejercicio anterior, por último en vez de ir acumulando sumando, acumulamos multiplicamos y eso presentamos
+
+
+n=int(input("Ingrese un número: "))
+
+fact=1
+
+for i in range(1,n+1):
+  fact*=i
+print(f" El factorial !{n} es: {fact}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Ejercicio4: Contar notas aprobadas y reprobadas
+
+# Entrada: n (cantidad de notas), nota (cada calificación)
+# Proceso: Recorrer con for, evaluar con if (nota >= 70) e incrementar contadores
+# Salida: Presentar total de aprobados y reprobados
+
+# Bosquejo (Prueba para n = 3 con notas 80, 50, 75)
+# i=0: nota=80 (>=70) -> aprobados = 0 + 1 = 1
+# i=1: nota=50 (<70)  -> reprobados = 0 + 1 = 1
+# i=2: nota=75 (>=70) -> aprobados = 1 + 1 = 2  ← resultado: 2 aprobados, 1 reprobado
+
+# Patrón
+# Contador/Acumulador con Condición (Contar elementos según una regla dentro de un ciclo)
+
+
+n = int(input("Cuántas notas vas a ingresar: "))
+aprobados = 0
+reprobados = 0
+
+for i in range(0, n):
+    nota = float(input("Ingrese nota: "))
+    
+    if nota >= 70:
+        aprobados += 1
+    else:
+        reprobados += 1
+
+print(f"Número de aprobados: {aprobados}")
+print(f"Número de reprobados: {reprobados}")
+
+
+
+# Ejercicio Adicional: Contar notas y calcular porcentaje con división
+
+# Entrada: n (cantidad de notas), nota (cada calificación)
+# Proceso: Contar e incrementalmente dividir (aprobados / n)
+# Salida: Presentar porcentaje formateado
+
+# Bosquejo (Prueba para n = 4 con 3 aprobados)
+# aprobados = 3
+# division = 3 / 4 = 0.75
+# porcentaje = 0.75 * 100 = 75%
+
+n=int(input("Cuántas notas vas a ingresar: "))
+aprobados=0
+reprobados=0
+
+for i in range(0,n):
+  nota=float(input("Ingrese nota: "))
+    
+  if nota >=70:
+    aprobados+=1
+  else:
+    reprobados+=1
+
+print(f"Número de aprobados: {aprobados}")
+print(f"% aprobados: {(aprobados/n)*100} % ")
+print(f"Número de reprobados: {reprobados}")
+print(f"% aprobados: {(reprobados/n)*100} %")
+
+
+
+# Ejercicio 5: Determinar la nota más alta
+
+# Entrada: n (cantidad de notas), nota (cada calificación)
+# Proceso: Recorrer con for y actualizar la variable mayor con if (nota > mayor)
+# Salida: Presentar la nota más alta
+
+# Bosquejo (Prueba para n = 3 con notas 65, 90, 80)
+# i=0: nota=65 -> (65 > 0)  -> mayor = 65
+# i=1: nota=90 -> (90 > 65) -> mayor = 90
+# i=2: nota=80 -> (80 > 90) -> mayor = 90  ← resultado: mayor = 90
+
+# Patrón
+# Encontrar el Máximo (Búsqueda del valor mayor dentro de una secuencia)
+
+n = int(input("Cuántas notas vas a ingresar: "))
+
+mayor = 0
+
+for i in range(0, n):
+    nota = float(input("Ingrese nota: "))
+    if nota > mayor:
+        mayor = nota
+
+print(f"La mayor nota es: {mayor}")
+ 
+#otra forma
+n = int(input("¿Cuántas notas? "))
+maxima = float("-inf")              # valor imposible: nada será menor
+
+for i in range(n):
+    nota = float(input(f"Nota {i+1}: "))
+    if nota > maxima:               # ¿es mayor que el récord?
+        maxima = nota               # sí → actualizamos
+
+print(f"Máxima: {maxima}")
+
+
+# Ejercicio adicional: Determinar la nota más alta y la nota más baja
+
+# Entrada: n (cantidad de notas), nota (cada calificación)
+# Proceso: Inicializar mayor/menor con la primera nota y comparar en el ciclo con if
+# Salida: Presentar la nota mayor y la menor
+
+# Bosquejo (Prueba para n = 3 con notas 85, 40, 95)
+# i=0 (nota=85): mayor = 85, menor = 85
+# i=1 (nota=40): 40 > 85 (No) -> 40 < 85 (Sí) -> menor = 40
+# i=2 (nota=95): 95 > 85 (Sí) -> mayor = 95
+# Resultado final: mayor = 95, menor = 40
+
+# Patrón
+# Búsqueda simultánea de Máximo y Mínimo
+
+n = int(input("Cuántas notas vas a ingresar: "))
+
+# Leemos la primera nota para tener un punto de partida real
+nota = float(input("Ingrese nota : "))
+mayor = nota
+menor = nota
+
+# El ciclo evalúa las notas restantes (desde la 2da hasta n)
+for i in range(1, n):
+    nota = float(input(f"Ingrese nota: "))
+    if nota > mayor:
+        mayor = nota
+    if nota < menor:
+        menor = nota
+
+print(f"La mayor nota es: {mayor}")
+print(f"La menor nota es: {menor}")
+
+
+
+
+
+
+
+
+
+
+
+#Ejercicio 6 ¿es primo? Verificar si un número es primo (Optimizado para números grandes)
+
+# Entrada: n (número entero a evaluar)
+# Proceso: Recorrer desde 2 hasta la raíz cuadrada de n (√n); si encuentra divisor corta con break
+# Salida: Presentar si el número es primo o no
+
+# Bosquejo (Prueba para n = 101 -> √101 ≈ 10, revisa del 2 al 10)
+# i = 2: 101 % 2 != 0
+# i = 3: 101 % 3 != 0
+# ...
+# i = 10: 101 % 10 != 0 -> Fin del rango sin divisores
+# Resultado: 101 es primo
+
+# Patrón
+# Búsqueda con límite matemático (Optimizada con √n e interrupción temprana break)
+
+n = int(input("Número: "))
+es_primo = True
+
+if n < 2:
+    es_primo = False
+else:
+    # int(n ** 0.5) + 1 limita las pruebas solo hasta la raíz cuadrada de n
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            es_primo = False
+            break
+
+if es_primo:
+    print(f"{n} es primo")
+else:
+    print(f"{n} NO es primo")
+
+
+
+
+#EJERCICIOS PROPUESTOS
+
+#Ejercicio P1 tabla de multiplicar
+#Entrada: n, Proceso: recorrer n y generar la tabla de multiplicar, salida: presentar la tabla de multiplicar
+
+#bosquejo 
+#n=7
+#i=1: 7*1=7
+#i=2: 7*2=14
+#i=3: 7*3=21
+#i=4: 7*4=28
+#...
+#i=5: 7*12=84
+
+#debemos de recorrer del 1 al 12 e ir multiplicando por n
+
+
+n=int(input("Ingrese un número: "))
+
+print(f"Tabla de multiplicar del {n}")
+for i in range(1,13):
+  print(f"{n}x{i}= {n*i}")
+  
+
+
+
+# Ejercicio P2: Contar dígitos de un número
+
+# Entrada: n (número entero positivo a evaluar)
+# Proceso: Dividir n entre 10 sucesivamente con // (división entera) hasta llegar a 0 e incrementar contador
+# Salida: Presentar la cantidad total de dígitos
+
+# Bosquejo (Prueba para n = 324)
+# n=324, contador=0
+# 1ra iteración: n = 324 // 10 = 32 -> contador = 0 + 1 = 1
+# 2da iteración: n = 32 // 10 = 3  -> contador = 1 + 1 = 2
+# 3ra iteración: n = 3 // 10 = 0   -> contador = 2 + 1 = 3
+# n llega a 0 -> Fin del while
+# Resultado: 3 dígitos
+
+# Patrón
+# Reducción numérica por división entera (Contar iteraciones hasta agotar el número)
+
+
+
+num=int(input("Ingrese un número: "))
+
+n = abs(num) 
+contador=0
+
+if n==0:
+  contador=1
+else:
+  while n > 0:
+        contador += 1
+        n = n // 10   
+
+print(contador)
+
+
+# Ejercicio P3: Suma y clasificación de pares e impares
+
+# Entrada: n (cantidad de números), num (cada valor ingresado)
+# Proceso: Evaluar num % 2 == 0 para guardar en lista e ir acumulando en suma correspondiente
+# Salida: Mostrar listas de pares/impares y sus respectivas sumas
+
+# Bosquejo (Prueba para n = 3 con números 4, 3, 2)
+# num = 4 -> Par: pares=[4], acum_pares = 0 + 4 = 4
+# num = 3 -> Impar: impares=[3], acum_impares = 0 + 3 = 3
+# num = 2 -> Par: pares=[4, 2], acum_pares = 4 + 2 = 6
+# Resultado: pares=[4, 2] (suma: 6), impares=[3] (suma: 3)
+
+# Patrón
+# Clasificación con listas acumuladoras y sumadores en paralelo
+
+n=int(input("Cuántos números vas a escribir: "))
+acum_pares=0
+acum_impares=0
+pares=[]
+impares=[]
+
+for i in range(n):
+  num=int(input("Ingrese un número: "))
+  if (num%2==0):
+    pares.append(num)
+  else:
+    impares.append(num)
+    
+for i in (pares):
+      acum_pares+=i
+for i in (impares):
+      acum_impares+=i
+print(f"Pares {pares}")
+print(f"suma pares {acum_pares}")
+print(f"Impares {impares}")  
+print(f"suma impares {acum_impares}")  
+  
+
+
+# Ejercicio P4  Validar rango de entrada con bucle infinito
+
+# Entrada: edad (número entero a validar)
+# Proceso: Repetir lectura con while True hasta que 0 <= edad <= 120 y romper con break
+# Salida: Presentar la edad validada
+
+# Bosquejo (Prueba con entradas -5 y 25)
+# 1ra iteración: edad = -5 -> (0 <= -5 <= 120) es Falso -> "Inválida, intenta de nuevo"
+# 2da iteración: edad = 25 -> (0 <= 25 <= 120) es Verdadero -> break (sale del bucle)
+# Resultado: Imprime "Edad válida: 25"
+
+# Patrón
+# Validación de Entrada por Centinela / Condición de Salida (Control de flujo con break)
+
+while True:
+    edad = int(input("Edad (0-120): "))
+    if 0 <= edad <= 120:
+        break                       # Sale del bucle si el dato es correcto
+    print("Inválida, intenta de nuevo")
+
+print(f"Edad válida: {edad}")
+
+
+
+
+# Ejercicio P5: Juego de adivinar un número con pistas
+
+# Entrada: intento (número entero ingresado por el usuario)
+# Proceso: Generar secreto aleatorio, comparar con el intento, dar pistas y contar intentos hasta acertar
+# Salida: Presentar mensaje de éxito y número de intentos realizados
+
+# Bosquejo (Prueba para secreto = 42 con intentos 50 y 42)
+# 1ra iteración: intento = 50 -> 50 > 42 -> Imprime "Es menor" | intentos = 1
+# 2da iteración: intento = 42 -> 42 == 42 -> Imprime "¡Correcto en 2 intentos!" -> break
+
+# Patrón
+# Búsqueda interactiva con retroalimentación (Ciclo indefinido con interrupción por coincidencia)
+
+import random
+
+secreto = random.randint(1, 100)
+intentos = 0
+
+while True:
+    intento = int(input("Adivina (1-100): "))
+    intentos += 1
+    
+    if intento == secreto:
+        print(f"¡Correcto en {intentos} intentos!")
+        break
+    elif intento < secreto:
+        print("Es mayor")
+    else:
+        print("Es menor")
+
+
+# Ejercicio P6 Generar la serie de Fibonacci
+
+# Entrada: n (cantidad de términos a generar)
+# Proceso: Intercambiar a y b mediante asignación múltiple (a=b, b=a+b) durante n iteraciones
+# Salida: Presentar los n primeros términos de la serie separados por espacio
+
+# Bosquejo (Prueba para n = 4)
+# Inicio: a = 0, b = 1
+# i=0: Imprime 0 -> Nuevo a = 1, Nuevo b = 0 + 1 = 1
+# i=1: Imprime 1 -> Nuevo a = 1, Nuevo b = 1 + 1 = 2
+# i=2: Imprime 1 -> Nuevo a = 2, Nuevo b = 1 + 2 = 3
+# i=3: Imprime 2 -> Nuevo a = 3, Nuevo b = 2 + 3 = 5
+# Salida en pantalla: 0 1 1 2 
+
+# Patrón
+# Generación de Serie Recurrente / Actualización Simultánea de Variables
+
+n = int(input("¿Cuántos? "))
+a, b = 0, 1                         # Asignación múltiple para los valores iniciales
+
+for _ in range(n):                  # _ indica que no se requiere utilizar la variable del ciclo
+    print(a, end=" ")
+    a, b = b, a + b                 # Avanza la serie calculando el siguiente término
+
+print()                             # Salto de línea final
+  
+
+
+
+
+
+#decisiones
+nota = int(input("Nota (0-100): "))
+
+if nota >= 90:
+    print("Sobresaliente")     # se ejecuta si nota >= 90
+elif nota >= 70:
+    print("Aprobado")           # se ejecuta si nota está entre 70 y 89
+elif nota >= 60:
+    print("Recuperación")       # se ejecuta si nota está entre 60 y 69
+else:
+    print("Reprobado")          # todos los demás casos
+
+# La indentación (4 espacios) es OBLIGATORIA
+# Python usa la sangría para saber qué está DENTRO del if
+print("Fin del programa")       # esto se ejecuta SIEMPRE (fuera del if)
+
+#and
+edad = 20
+tiene_licencia = True
+
+# AND: las DOS deben ser verdaderas
+if edad >= 18 and tiene_licencia:
+    print("Puede manejar")
+
+# OR: al menos UNA debe ser verdadera
+if edad < 12 or edad > 65:
+    print("Descuento aplicable")
+
+# NOT: invierte el valor
+if not tiene_licencia:
+    print("Debe sacar licencia primero")
+
+# Rango cómodo (Python permite comparar en cadena)
+if 18 <= edad <= 65:
+    print("Edad laboral")
+
+#Repetición: for (cuando sabes las veces)
+#El for se usa cuando sabes de antemano cuántas veces vas a repetir, o cuando quieres #recorrer todos los elementos de algo (una lista, un texto, un diccionario).
+#range(): generar secuencias de números
+
+# Contar del 1 al 5
+for i in range(1, 6):
+    print(i)
+
+# Recorrer los elementos de una lista
+notas = [8, 6, 10, 7, 9]
+for nota in notas:
+    print(nota)
+
+# Con índice también
+for i, nota in enumerate(notas):
+    print(f"[{i}] {nota}")
+
+# Recorrer un texto
+for letra in "Python":
+    print(letra)
+
+
+
+#Repetición: while (cuando NO sabes las veces)
+#El while se usa cuando quieres repetir mientras se cumpla una condición que puede #depender de algo que pasa dentro del bucle: leer datos hasta que el usuario ponga 0, #buscar hasta encontrar algo, etc.
+
+
+opcion = 0
+while opcion != 3:                        # sigue mientras opcion NO sea 3
+    print("1. Saludar")
+    print("2. Despedir")
+    print("3. Salir")
+    opcion = int(input("Opción: "))
+
+    if opcion == 1:
+        print("¡Hola!")
+    elif opcion == 2:
+        print("¡Adiós!")
+    elif opcion == 3:
+        print("Cerrando programa...")
+    else:
+        print("Opción inválida")
+
+#break y continue: interruptores del bucle
+
+# BREAK: salir del bucle inmediatamente
+for i in range(100):
+    if i == 5:
+        break              # el bucle termina aquí
+    print(i)               # solo imprime 0, 1, 2, 3, 4
+
+# CONTINUE: saltar a la siguiente vuelta
+for i in range(10):
+    if i % 2 == 0:
+        continue           # los pares se saltan
+    print(i)               # imprime solo 1, 3, 5, 7, 9
+
+# Patrón while True + break: repetir hasta que pase algo
+while True:
+    nombre = input("Nombre (o 'fin' para terminar): ")
+    if nombre == "fin":
+        break
+    print(f"Hola, {nombre}")
