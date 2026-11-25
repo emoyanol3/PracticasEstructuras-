@@ -1,4 +1,9 @@
-#E1
+#E1 Herencia y polimorfismo
+#Modela una empresa aérea con Persona como clase base y Pasajero y Empleado como hijas. Cada hija añade su propio atributo y método.
+#Entrada: los datos de una persona más los específicos
+#Proceso: clase base con lo común, hijas con lo específico
+#Salida: presentación adaptada a cada tipo
+
 class Persona:
     def __init__(self, nombre, cedula):
         self.nombre = nombre
