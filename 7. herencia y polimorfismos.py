@@ -147,6 +147,156 @@ total_perimetro = sum(f.perimetro() for f in figuras)
 print(f"\nÁrea total: {total_area:.2f}")
 print(f"Perímetro total: {total_perimetro:.2f}")
 
+
+#Propuestos 
+#P1 Base Vehiculo(marca, modelo). Hija Auto con puertas. Hija Moto con cilindraje. Ambas tienen __str__ propio.
+#Entrada: auto = Auto('Toyota', 'Corolla', 4)
+#Proceso aplicar herencia y polimorfismo
+#Salida: Toyota Corolla — 4 puertas
+
+# P1
+class Vehiculo:
+    def __init__(self, marca, modelo):
+        self.marca = marca
+        self.modelo = modelo
+
+    def __str__(self):
+        return f"{self.marca} {self.modelo}"
+
+
+class Auto(Vehiculo):
+    def __init__(self, marca, modelo, puertas):
+        super().__init__(marca, modelo)
+        self.puertas = puertas
+
+    def __str__(self):
+        return f"{super().__str__()} — {self.puertas} puertas"
+
+
+class Moto(Vehiculo):
+    def __init__(self, marca, modelo, cilindraje):
+        super().__init__(marca, modelo)
+        self.cilindraje = cilindraje
+
+    def __str__(self):
+        return f"{super().__str__()} — {self.cilindraje}cc"
+
+
+# --- Uso ---
+print("=======================")
+print("Lista de coches y motos")
+print("=======================")
+
+auto = Auto("Mercedes", "280s", 4)
+auto2 = Auto("BMW", "E38", 2)
+moto = Moto("Suzuki", "CR", 600)
+
+print("Autos")
+print("=======================")
+for v in [auto, auto2]:
+    print(v)
+
+print("\nMotos")
+print("=======================")
+for m in [moto]:
+    print(m)
+
+
+
+
+ 
+#P2 Base Animal(nombre) con método hablar() que dice «(sonido)». Cada hija sobrescribe con su propio sonido.
+#Entrada: para 3 animales
+#Proceso; Aplicar herencia y polimorfismo
+#Salida: Rex: Guau, Felix: Miau, Piolín: Pío
+
+
+class Animal:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def hablar(self):
+        print(f"{self.nombre}: (sonido)")
+
+class Perro(Animal):
+    def hablar(self):
+        print(f"{self.nombre}: ¡Guau!")
+
+class Gato(Animal):
+    def hablar(self):
+        print(f"{self.nombre}: Miau")
+
+class Ave(Animal):
+    def hablar(self):
+        print(f"{self.nombre}: Pío pío")
+      
+class Vaca(Animal):
+    def hablar(self):
+        print(f"{self.nombre}: Muuuuuuu")
+      
+class Leon(Animal):
+    def hablar(self):
+      print(f"{self.nombre}: Raawwwwwww ")
+
+# Uso polimórfico
+print("Animales y sus sonidos")
+print("-----------------------")
+animales = [Perro("Rex"), Gato("Felix"), Ave("Piolín"), Vaca("Lola"), Leon("Simba")]
+for a in animales:
+    a.hablar()
+
+
+#P3 
+#Base Empleado(nombre) con método abstracto sueldo_mensual(). EmpleadoPorHoras calcula sueldo por horas trabajadas × tarifa. EmpleadoFijo tiene sueldo fijo.
+#Entrada: por_horas: 160h × 8, fijo: 1500
+#Proceso: Aplicar herencia y polimorfismo
+#Salida: 1280.00, 1500.00
+
+class Empleado:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def sueldo_mensual(self):
+        raise NotImplementedError
+
+    def __str__(self):
+        return f"{self.nombre}: ${self.sueldo_mensual():.2f}"
+
+
+class EmpleadoPorHoras(Empleado):
+    def __init__(self, nombre, horas, tarifa):
+        super().__init__(nombre)
+        self.horas = horas
+        self.tarifa = tarifa
+
+    def sueldo_mensual(self):
+        return self.horas * self.tarifa
+
+
+class EmpleadoFijo(Empleado):
+    def __init__(self, nombre, sueldo):
+        super().__init__(nombre)
+        self.sueldo = sueldo
+
+    def sueldo_mensual(self):
+        return self.sueldo
+
+
+# Nómina polimórfica
+empleados = [
+    EmpleadoPorHoras("Ericka", 100, 8),
+    EmpleadoPorHoras("Miguel", 160, 8),
+    EmpleadoFijo("Heriberto", 1500)
+]
+
+nomina = 0
+for e in empleados:
+    print(e)
+    nomina += e.sueldo_mensual()
+
+print(f"Total nómina: ${nomina:.2f}")
+
+
 # Pero __str__ es distinto en cada uno:
 print(p)                                          # Pasajero Ana [reserva: AB-1234] · 500 millas
 print(e)                                          # Empleado Luis [EMP-01] · $1320.00
